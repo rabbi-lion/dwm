@@ -17,7 +17,7 @@ static unsigned int gappov          = 30;       /* vert outer gap between window
 static int swallowfloating          = 0;        /* 1 means swallow floating windows by default */
 static int smartgaps                = 0;        /* 1 means no outer gap when there is only one window */
 static const char *fonts[]          = { "IBM Plex Mono:size=16" };
-static const char dmenufont[]       = "IBM Plex Mono:size=12";
+static const char dmenufont[]       = "IBM Plex Mono:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
