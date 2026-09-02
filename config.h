@@ -18,15 +18,16 @@ static int swallowfloating          = 0;        /* 1 means swallow floating wind
 static int smartgaps                = 0;        /* 1 means no outer gap when there is only one window */
 static const char *fonts[]          = { "IBM Plex Mono:size=16" };
 static const char dmenufont[]       = "IBM Plex Mono:size=16";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_gray1[]       = "#020202";
+static const char col_gray2[]       = "#082d2d";
+static const char col_gray3[]       = "#01f2d1";
+static const char col_gray4[]       = "#f4f4f4";
+static const char col_cyan[]        = "#0e9491";
+static const char col_focus[]       = "#0c4343";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
+	/*               fg         bg         border */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_focus },
 };
 
 typedef struct {
@@ -53,6 +54,7 @@ static const Rule rules[] = {
 	{ TERMCLASS,     NULL,       NULL,           0,          0,          1,          0,         -1 },
 	{ NULL,          NULL,       "Event Tester", 0,          0,          0,          1,         -1 },
 	{ TERMCLASS,     "spterm",   NULL,           SPTAG(0),   1,          1,          0,         -1 },
+	{ "steam",       NULL,       NULL,           1 << 1,     1,          0,          0,         -1 },
 };
 
 /* layout(s) */
