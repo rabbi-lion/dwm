@@ -51,7 +51,7 @@
 #define CLEANMASK(mask)         (mask & ~(numlockmask|LockMask) & (ShiftMask|ControlMask|Mod1Mask|Mod2Mask|Mod3Mask|Mod4Mask|Mod5Mask))
 #define INTERSECT(x,y,w,h,m)    (MAX(0, MIN((x)+(w),(m)->wx+(m)->ww) - MAX((x),(m)->wx)) \
                                * MAX(0, MIN((y)+(h),(m)->wy+(m)->wh) - MAX((y),(m)->wy)))
-#define ISVISIBLE(C)            (!desktopmode && ((C->tags & C->mon->tagset[C->mon->seltags]) || C->issticky))
+#define ISVISIBLE(C)            (((C->tags & C->mon->tagset[C->mon->seltags]) || C->issticky))
 #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
 #define WIDTH(X)                ((X)->w + 2 * (X)->bw)
 #define HEIGHT(X)               ((X)->h + 2 * (X)->bw)
@@ -134,7 +134,6 @@ struct Monitor {
 	unsigned int tagset[2];
 	int showbar;
 	int topbar;
-	int desktopshowbar;
 	Client *clients;
 	Client *sel;
 	Client *stack;
@@ -231,7 +230,6 @@ static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
-static void toggledesktop(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglescratch(const Arg *arg);
 static void togglesticky(const Arg *arg);
@@ -295,7 +293,6 @@ static void (*handler[LASTEvent]) (XEvent *) = {
 };
 static Atom wmatom[WMLast], netatom[NetLast];
 static int running = 1;
-static int desktopmode = 0;
 static Cur *cursor[CurLast];
 static Clr **scheme;
 static Display *dpy;
@@ -1930,29 +1927,6 @@ tagmon(const Arg *arg)
 	if (!selmon->sel || !mons->next)
 		return;
 	sendmon(selmon->sel, dirtomon(arg->i));
-}
-
-void
-toggledesktop(const Arg *arg)
-{
-	Monitor *m;
-
-	desktopmode = !desktopmode;
-
-	for (m = mons; m; m = m->next) {
-		if (desktopmode) {
-			m->desktopshowbar = m->showbar;
-			m->showbar = 0;
-		} else {
-			m->showbar = m->desktopshowbar;
-		}
-
-		updatebarpos(m);
-		XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
-	}
-
-	focus(NULL);
-	arrange(NULL);
 }
 
 void
