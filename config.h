@@ -54,7 +54,7 @@ static const Rule rules[] = {
 	{ TERMCLASS,     NULL,       NULL,           0,          0,          1,          0,         -1 },
 	{ NULL,          NULL,       "Event Tester", 0,          0,          0,          1,         -1 },
 	{ TERMCLASS,     "spterm",   NULL,           SPTAG(0),   1,          1,          0,         -1 },
-	{ "steam",       NULL,       NULL,           1 << 1,     1,          0,          0,         -1 },
+	{ "steam",       NULL,       NULL,           1 << 2,     1,          0,          0,         -1 },
 };
 
 /* layout(s) */
@@ -97,7 +97,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 static const char *thunarcmd[] = { "thunar", NULL };
-static const char *wallnextcmd[] = { "/bin/sh", "-c", "printf 'next\\n' > \"${XDG_RUNTIME_DIR:-/tmp}/wallpaper-slideshow-$UID.fifo\"", NULL };
 
 #include <X11/XF86keysym.h>
 #include "shift-tools.c"
@@ -110,9 +109,6 @@ static const Key keys[] = {
 	{ MODKEY,			XK_e,          spawn,                  {.v = thunarcmd } },
 	{ MODKEY,			XK_w,          spawn,                  {.v = (const char*[]){ BROWSER, NULL } } },
 
-	{ ShiftMask,			XK_plus,       spawn,                  {.v = wallnextcmd } },
-	{ Mod1Mask,			XK_d,          toggledesktop,          {0} },
-
 	{ MODKEY,			XK_j,          focusstack,             {.i = +1 } },
 	{ MODKEY,			XK_k,          focusstack,             {.i = -1 } },
 	{ MODKEY,			XK_space,      rotatestack,            {.i = +1 } },
@@ -123,7 +119,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_o,          incnmaster,             {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_o,          incnmaster,             {.i = -1 } },
 
-	{ MODKEY,			XK_q,          killclient,             {0} },
+	{ MODKEY,			XK_p,          killclient,             {0} },
 	{ MODKEY,			XK_z,          zoom,                   {0} },
 	{ MODKEY|ShiftMask,		XK_c,          togglefloating,         {0} },
 	{ MODKEY,			XK_b,          togglebar,              {0} },
@@ -145,6 +141,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_a,          defaultgaps,            {0} },
 	{ MODKEY|ShiftMask,		XK_z,          incrgaps,               {.i = +3 } },
 	{ MODKEY|ShiftMask,		XK_x,          incrgaps,               {.i = -3 } },
+
+	{ MODKEY,			XK_q,          togglesmartgaps,        {0} },
 
 	{ MODKEY,			XK_g,          shiftview,              {.i = -1 } },
 	{ MODKEY|ShiftMask,		XK_g,          shifttag,               {.i = -1 } },
@@ -168,7 +166,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Right,      focusmon,               {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_Right,      tagmon,                 {.i = +1 } },
 
-	{ MODKEY|ShiftMask,		XK_q,          quit,                   {0} },
+	{ MODKEY|ShiftMask,		XK_p,          quit,                   {0} },
 
 	{ 0, XF86XK_AudioRaiseVolume,                  spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.0; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_AudioLowerVolume,                  spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+10 dwmblocks") },
@@ -205,4 +203,3 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
