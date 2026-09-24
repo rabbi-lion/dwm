@@ -95,16 +95,6 @@ sudo make clean install
 
 Restart dwm to apply the changes.
 
-## Related repositories
-
-```
-https://github.com/rabbi-lion/dwm-install
-https://github.com/rabbi-lion/dotfiles
-https://github.com/rabbi-lion/st
-https://github.com/rabbi-lion/dwmblocks
-https://github.com/rabbi-lion/nsxiv
-```
-
 ## License
 
 This repository retains the original dwm MIT/X Consortium license.
