@@ -2,39 +2,30 @@
 
 My customized build of [dwm](https://dwm.suckless.org/).
 
-This build is used by my Arch Linux and Debian dwm setup and contains the patches and configuration I use daily.
+Used by my Arch Linux and Debian dwm setup. Contains the patches and
+configuration I use daily.
 
 ## Installation
-
-Clone the repository:
 
 ```sh
 git clone https://github.com/rabbi-lion/dwm.git
 cd dwm
-```
-
-Build and install:
-
-```sh
 make
 sudo make install
 ```
 
-On a fresh system, the recommended method is to use my post-install script:
+On a fresh system, use my post-install script instead:
 
-```text
+```
 https://github.com/rabbi-lion/dwm-install
 ```
 
 ## Features
 
-This build includes:
-
 - vanity gaps
 - scratchpads
 - swallowing
 - sticky windows
-- desktop toggle
 - centered floating windows
 - stack rotation
 - clickable dwmblocks
@@ -42,27 +33,23 @@ This build includes:
 
 ## Scratchpads
 
-Scratchpads are integrated directly into dwm and can be toggled independently of the normal tags.
-
-Floating scratchpads are centered automatically.
+Integrated directly into dwm. Can be toggled independently of the
+normal tags. Floating scratchpads are centered automatically.
 
 ## Swallowing
 
-Terminal windows can swallow applications launched from them.
-
-When the child application exits, the original terminal window is restored.
+Terminal windows can swallow applications launched from them. When
+the child application exits, the original terminal window is restored.
 
 ## Sticky windows
 
-Windows can be marked sticky so they remain visible when switching between tags.
-
-## Desktop toggle
-
-A desktop mode can temporarily hide normal client windows, providing quick access to the desktop without changing the active tag.
+Windows can be marked sticky so they remain visible when switching
+between tags.
 
 ## Gaps
 
-Vanity gaps provide configurable inner and outer gaps between tiled windows and the edges of the monitor.
+Vanity gaps provide configurable inner and outer gaps between tiled
+windows and the edges of the monitor.
 
 ## Floating windows
 
@@ -74,31 +61,29 @@ The client stack can be rotated without changing the selected layout.
 
 ## dwmblocks integration
 
-This build integrates with my `dwmblocks` configuration.
-
-It supports:
+Integrates with my `dwmblocks` configuration:
 
 - clickable status blocks
 - block signals
 - immediate status updates
 
-My dwmblocks repository is available at:
+My dwmblocks repository:
 
-```text
+```
 https://github.com/rabbi-lion/dwmblocks
 ```
 
 Status scripts are provided by my dotfiles:
 
-```text
+```
 https://github.com/rabbi-lion/dotfiles
 ```
 
 ## Configuration
 
-dwm is configured directly in:
+dwm is configured in:
 
-```text
+```
 config.h
 ```
 
@@ -112,7 +97,7 @@ Restart dwm to apply the changes.
 
 ## Related repositories
 
-```text
+```
 https://github.com/rabbi-lion/dwm-install
 https://github.com/rabbi-lion/dotfiles
 https://github.com/rabbi-lion/st
@@ -123,5 +108,4 @@ https://github.com/rabbi-lion/nsxiv
 ## License
 
 This repository retains the original dwm MIT/X Consortium license.
-
 See `LICENSE` for the full license text.
